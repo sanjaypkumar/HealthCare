@@ -23,9 +23,9 @@ public class Specialization {
 	private Long id;
 	
 	@Column(name="spec_code_col")
-	private String code;
+	private String specCode;
 	@Column(name="spec_name_col")
-	private String name;
+	private String specName;
 	@Column(name="spec_note_col")
-	private String note;
+	private String specNote;
 }
