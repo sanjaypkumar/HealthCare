@@ -1,6 +1,5 @@
 package in.project.sanjay.specialization;
 
-//import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -34,6 +33,7 @@ public class SpecializationRepositoryTest {
 	/*
 	 * 	1.Test save operation
 	 */
+	
 	//@Disabled
 	@Test
 	//@Order(1)
