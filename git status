@@ -1,0 +1,26 @@
+[1mdiff --git a/src/main/java/in/project/sanjay/controller/SpecializationController.java b/src/main/java/in/project/sanjay/controller/SpecializationController.java[m
+[1mindex 27935ea..a13735a 100644[m
+[1m--- a/src/main/java/in/project/sanjay/controller/SpecializationController.java[m
+[1m+++ b/src/main/java/in/project/sanjay/controller/SpecializationController.java[m
+[36m@@ -91,4 +91,18 @@[m [mpublic class SpecializationController {[m
+ 		model.addAttribute("specialization", spec);[m
+ 		return "SpecializationEdit";[m
+ 	}[m
+[32m+[m[41m	[m
+[32m+[m	[32m/*[m
+[32m+[m	[32m * 6. Update Form data redirect to all[m
+[32m+[m	[32m */[m
+[32m+[m	[32m@PostMapping("/update")[m
+[32m+[m	[32mpublic String updateData([m
+[32m+[m			[32m@ModelAttribute Specialization specialization,[m
+[32m+[m			[32mRedirectAttributes attributes[m
+[32m+[m			[32m)[m
+[32m+[m	[32m{[m
+[32m+[m		[32mservice.updateSpecialization(specialization);[m
+[32m+[m		[32mattributes.addAttribute("message","Record ("+specialization.getId()+") is Updated");[m
+[32m+[m		[32mreturn "redirect:all";[m
+[32m+[m	[32m}[m
+ }[m
+[1mdiff --git a/target/classes/in/project/sanjay/controller/SpecializationController.class b/target/classes/in/project/sanjay/controller/SpecializationController.class[m
+[1mindex 0af0c5c..ccf41e8 100644[m
+Binary files a/target/classes/in/project/sanjay/controller/SpecializationController.class and b/target/classes/in/project/sanjay/controller/SpecializationController.class differ
