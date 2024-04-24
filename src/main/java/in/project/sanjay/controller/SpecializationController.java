@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.project.sanjay.entity.Specialization;
@@ -17,7 +18,7 @@ import in.project.sanjay.service.ISpecializationService;
 
 @Controller
 @RequestMapping("/spec")
-@Configuration
+//@Configuration
 public class SpecializationController {
 
 	@Autowired
@@ -35,7 +36,7 @@ public class SpecializationController {
 	/*
 	 * 2.On submit form save Data
 	 */
-	@GetMapping("/save")
+	@PostMapping("/save")
 	public String saveForm(
 			@ModelAttribute Specialization specialization,
 			Model model)
@@ -54,8 +55,18 @@ public class SpecializationController {
 	public String viewAll(Model model) {
 		List<Specialization> list = service.getAllSpecializations();
 		model.addAttribute("list", list);
-		return "Specialization";
+		return "SpecializationData";
 	}
 	
-	
+	/*
+	 * 4. Delete By ID
+	 */
+	@GetMapping("/delete")
+	public String deleteData(
+			@RequestParam Long id
+			) 
+	{
+		service.removeSpecialization(id);
+		return "redirect:all"; 
+	}
 }
