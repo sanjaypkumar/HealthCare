@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -104,5 +105,39 @@ public class SpecializationController {
 		service.updateSpecialization(specialization);
 		attributes.addAttribute("message","Record ("+specialization.getId()+") is Updated");
 		return "redirect:all";
+	}
+	
+	/*
+	 * 7. read code and check with service
+	 *    Return message back to UI
+	 */
+	@GetMapping("/checkCode")
+	@ResponseBody
+	public String validateSpecCode(
+			@RequestParam String code
+			) 
+	{
+		String message="";
+		if(service.isSpecCodeExist(code)){
+			message = code +" , *Already exist";
+		}
+		return message; //This time its not a viewName its a message
+	}
+	
+	/*
+	 * 8. Read Name and check with service
+	 *    Return message back to UI
+	 */
+	@GetMapping("/checkName")
+	@ResponseBody
+	public String validateSpecName(
+			@RequestParam String name
+			) 
+	{
+		String message="";
+		if(service.isSpecNameExist(name)) {
+			message = name +", *Already Exist";
+		}
+		return message;  //This time its not a viewname(its a message)
 	}
 }
