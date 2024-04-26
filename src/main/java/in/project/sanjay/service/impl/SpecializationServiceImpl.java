@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.project.sanjay.entity.Specialization;
+import in.project.sanjay.execption.SpecializationNotFoundExecption;
 import in.project.sanjay.repo.SpecializationRepository;
 import in.project.sanjay.service.ISpecializationService;
 
@@ -32,7 +33,8 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	//@Override
 	public void removeSpecialization(Long id) {
 		// TODO Auto-generated method stub
-		repo.deleteById(id);
+		//repo.deleteById(id);
+		repo.delete(getOneSpecialization(id));
 	}
 
 	//@Override
@@ -42,7 +44,7 @@ public class SpecializationServiceImpl implements ISpecializationService {
 		if(optional.isPresent()) {
 			return optional.get();
 		}else {
-			return null;
+			throw new SpecializationNotFoundExecption(id+ " Not Found");
 		}
 	}
 
