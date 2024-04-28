@@ -2,6 +2,7 @@ package in.project.sanjay.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,12 +41,17 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	//@Override
 	public Specialization getOneSpecialization(Long id) {
 		// TODO Auto-generated method stub
+		/*
 		Optional<Specialization> optional = repo.findById(id);
 		if(optional.isPresent()) {
 			return optional.get();
 		}else {
 			throw new SpecializationNotFoundExecption(id+ " Not Found");
 		}
+		*/
+		return repo.findById(id).orElseThrow(
+				() -> new SpecializationNotFoundExecption(id+ " Not Found")
+				);
 	}
 
 	//@Override
