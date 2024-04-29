@@ -141,11 +141,14 @@ public class SpecializationController {
 	@GetMapping("/checkCode")
 	@ResponseBody
 	public String validateSpecCode(
-			@RequestParam String code
+			@RequestParam String code,
+			@RequestParam Long id
 			) 
 	{
 		String message="";
-		if(service.isSpecCodeExist(code)){
+		if(id == 0 && service.isSpecCodeExist(code)){
+			message = code +" , *Already exist";
+		}else if(id != 0 && service.isSpecCodeExistForEdit(code, id)) {
 			message = code +" , *Already exist";
 		}
 		return message; //This time its not a viewName its a message
@@ -155,6 +158,7 @@ public class SpecializationController {
 	 * 8. Read Name and check with service
 	 *    Return message back to UI
 	 */
+	/*
 	@GetMapping("/checkName")
 	@ResponseBody
 	public String validateSpecName(
@@ -167,6 +171,7 @@ public class SpecializationController {
 		}
 		return message;  //This time its not a viewname(its a message)
 	}
+	*/
 	
 	/*
 	 * 8. Export Data to Excel file
