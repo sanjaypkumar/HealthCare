@@ -24,7 +24,7 @@ public class SpecializationExcelView extends AbstractXlsView {
 		// TODO Auto-generated method stub
 		
 		//1. define Your own excel file name
-		response.addHeader("content-Disposition", "attachment;filename=SPECS.xlsx");
+		response.addHeader("content-Disposition", "attachment;filename=SPECS.xls");
 		
 		//2. read data  given by controller
 		List<Specialization> list = (List<Specialization>) model.get("list");
