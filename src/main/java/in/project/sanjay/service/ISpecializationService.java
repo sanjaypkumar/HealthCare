@@ -1,6 +1,7 @@
 package in.project.sanjay.service;
 
 import java.util.List;
+import java.util.Map;
 
 import in.project.sanjay.entity.Specialization;
 
@@ -17,4 +18,6 @@ public interface ISpecializationService {
 	//public boolean isSpecNameExist(String specName);
 	
 	public boolean isSpecCodeExistForEdit(String specCode, Long id);
+	
+	Map<Long, String> getSpecIdAndName();
 }

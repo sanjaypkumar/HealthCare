@@ -1,6 +1,7 @@
 package in.project.sanjay.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -11,6 +12,7 @@ import in.project.sanjay.entity.Specialization;
 import in.project.sanjay.execption.SpecializationNotFoundExecption;
 import in.project.sanjay.repo.SpecializationRepository;
 import in.project.sanjay.service.ISpecializationService;
+import in.project.sanjay.util.MyCollectionsUtil;
 
 @Service
 public class SpecializationServiceImpl implements ISpecializationService {
@@ -77,6 +79,14 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	public boolean isSpecCodeExistForEdit(String specCode, Long id) {
 		// TODO Auto-generated method stub
 		return repo.getSpecializationForEdit(specCode, id)>0;
+	}
+
+	@Override
+	public Map<Long, String> getSpecIdAndName() {
+		// TODO Auto-generated method stub
+		List<Object[]> list = repo.getSpecIdAndName();
+		Map<Long, String> map = MyCollectionsUtil.convertToMap(list);
+		return map;
 	}
 
 	/*

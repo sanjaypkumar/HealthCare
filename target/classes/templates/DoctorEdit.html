@@ -92,6 +92,23 @@
                 <span id="emailError"></span>
               </div>
             </div>
+            
+            <!-- row #Dynamic -->
+            <div class="row">
+              <div class="col-2">
+                <label for="specialization">Specialization</label>
+              </div>
+              <div class="col-4">
+                <select th:field="*{specialization}" name="specialization.id" class="form-control">
+                	<option value="">-SELECT-</option>
+                	<option th:each="ob:${specializations}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                </select>
+              </div>
+              <div class="col-6">
+                <span id="specializationError"></span>
+              </div>
+            </div>
+            
             <!-- row #4 -->
             <div class="row">
               <div class="col-2">
@@ -138,7 +155,7 @@
                 <input
                   type="radio"
                  th:field="*{gender}"
-                  value="male"
+                  value="Female"
                 />Female
               </div>
               <div class="col-6">
@@ -161,6 +178,20 @@
                 <span id="noteError"></span>
               </div>
             </div>
+            
+            <!-- row #8 -->
+            <div class="row">
+              <div class="col-2">
+                <label for="imgLoc">imgLoc</label>
+              </div>
+              <div class="col-4">
+              	<input type="text" th:field="*{imgLoc}"  class="form-control"/>
+              </div>
+              <div class="col-6">
+                <span id="imgLocError"></span>
+              </div>
+            </div>
+            
             <button type="submit" class="btn btn-success">
               Update
              <i class="fa fa-pencil-square" aria-hidden="true"></i></i>

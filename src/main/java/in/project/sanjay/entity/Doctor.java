@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -59,5 +61,11 @@ public class Doctor {
 		else
 			return "/user-photos/" + id +"/" + photos;		
 	}
+	
+
+	//---------ASSOCIATION MAPPING------------
+	@ManyToOne
+	@JoinColumn(name="spec_id_fk_col")
+	private Specialization specialization;  //HAS-A
 	
 }
