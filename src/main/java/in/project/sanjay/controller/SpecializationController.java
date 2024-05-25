@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.project.sanjay.entity.Specialization;
-import in.project.sanjay.execption.SpecializationNotFoundExecption;
+import in.project.sanjay.exception.SpecializationNotFoundExecption;
 import in.project.sanjay.service.ISpecializationService;
 import in.project.sanjay.view.SpecializationExcelView;
 

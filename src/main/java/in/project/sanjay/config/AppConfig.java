@@ -1,3 +1,5 @@
+/*
+
 package in.project.sanjay.config;
 
 import java.nio.file.Path;
@@ -26,3 +28,5 @@ public class AppConfig implements WebMvcConfigurer {
 		
 	}
 }
+
+*/

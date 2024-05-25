@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.project.sanjay.entity.Specialization;
-import in.project.sanjay.execption.SpecializationNotFoundExecption;
+import in.project.sanjay.exception.SpecializationNotFoundExecption;
 import in.project.sanjay.repo.SpecializationRepository;
 import in.project.sanjay.service.ISpecializationService;
 import in.project.sanjay.util.MyCollectionsUtil;
@@ -19,44 +19,39 @@ public class SpecializationServiceImpl implements ISpecializationService {
 
 	@Autowired
 	private SpecializationRepository repo;
-	
-	//@Override
+
+	@Override
 	public Long saveSpecialization(Specialization spec) {
 		// TODO Auto-generated method stub
 
 		return repo.save(spec).getId();
 	}
 
-	//@Override
+	@Override
 	public List<Specialization> getAllSpecializations() {
 		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
 
-	//@Override
+	@Override
 	public void removeSpecialization(Long id) {
 		// TODO Auto-generated method stub
-		//repo.deleteById(id);
+		// repo.deleteById(id);
 		repo.delete(getOneSpecialization(id));
 	}
 
-	//@Override
+	@Override
 	public Specialization getOneSpecialization(Long id) {
 		// TODO Auto-generated method stub
 		/*
-		Optional<Specialization> optional = repo.findById(id);
-		if(optional.isPresent()) {
-			return optional.get();
-		}else {
-			throw new SpecializationNotFoundExecption(id+ " Not Found");
-		}
-		*/
-		return repo.findById(id).orElseThrow(
-				() -> new SpecializationNotFoundExecption(id+ " Not Found")
-				);
+		 * Optional<Specialization> optional = repo.findById(id);
+		 * if(optional.isPresent()) { return optional.get(); }else { throw new
+		 * SpecializationNotFoundExecption(id+ " Not Found"); }
+		 */
+		return repo.findById(id).orElseThrow(() -> new SpecializationNotFoundExecption(id + " Not Found"));
 	}
 
-	//@Override
+	@Override
 	public void updateSpecialization(Specialization spec) {
 		// TODO Auto-generated method stub
 
@@ -66,20 +61,23 @@ public class SpecializationServiceImpl implements ISpecializationService {
 	@Override
 	public boolean isSpecCodeExist(String specCode) {
 		// TODO Auto-generated method stub
-		/*		
-		 Integer count = repo.getSpecializationSpecCodeCount(specCode);
-		boolean exist = count>0? true : false;
-		return exist;
-		*/
-		
-		return repo.getSpecializationSpecCodeCount(specCode)>0;
+		/*
+		 * Integer count = repo.getSpecializationSpecCodeCount(specCode); boolean exist
+		 * = count>0? true : false; return exist;
+		 */
+
+		return repo.getSpecializationSpecCodeCount(specCode) > 0;
 	}
 
-	@Override
-	public boolean isSpecCodeExistForEdit(String specCode, Long id) {
-		// TODO Auto-generated method stub
-		return repo.getSpecializationForEdit(specCode, id)>0;
+	
+
+	
+	 @Override
+	 public boolean isSpecCodeExistForEdit(String specCode, Long id) {
+	  // TODO Auto-generated method stub
+		 return repo.getSpecializationForEdit(specCode, id)>0; 
 	}
+	 
 
 	@Override
 	public Map<Long, String> getSpecIdAndName() {
@@ -89,16 +87,12 @@ public class SpecializationServiceImpl implements ISpecializationService {
 		return map;
 	}
 
-	/*
-	@Override
-	public boolean isSpecNameExist(String specName) {
-		// TODO Auto-generated method stub
-		Integer count = repo.getSpecializationSpecNameCount(specName);
-		boolean exist = count>0;
-		return exist;
-	}
-	*/
-	
-	
+//	@Override
+//	public boolean isSpecNameExist(String specName) {
+//		// TODO Auto-generated method stub
+//		Integer count = repo.getSpecializationSpecNameCount(specName);
+//		boolean exist = count > 0;
+//		return exist;
+//	}
 
 }

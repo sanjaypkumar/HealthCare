@@ -27,7 +27,7 @@
           <h3>Doctor Edit</h3>
         </div>
         <div class="card-body">
-          <form th:action="@{/doctor/update}" method="GET" th:object="${doctor}">
+          <form th:action="@{/doctor/update}" method="POST" th:object="${doctor}">
           	<!-- row #0 -->
             <div class="row">
               <div class="col-2">
@@ -44,6 +44,21 @@
                 <span id="idError"></span>
               </div>
             </div>
+            
+            <!-- row #8 -->
+            <div class="row">
+              <div class="col-2">
+                <label for="photoLoc">Image</label>
+              </div>
+              <div class="col-4">
+              	<input type="text" th:field="*{photoLoc}"  class="form-control" onchange="uploadFile()"/>
+              	<input type="hidden" th:field="*{photoLoc}" />
+              </div>
+              <div class="col-6">
+                <span id="photoLocError"></span>
+              </div>
+            </div>
+            
             <!-- row #1 -->
             <div class="row">
               <div class="col-2">
@@ -93,13 +108,13 @@
               </div>
             </div>
             
-            <!-- row #Dynamic -->
+            <!--  row #Integration  -->
             <div class="row">
               <div class="col-2">
                 <label for="specialization">Specialization</label>
               </div>
               <div class="col-4">
-                <select th:field="*{specialization}" name="specialization.id" class="form-control">
+                <select name="specialization.id"  th:field="*{specialization}" class="form-control">
                 	<option value="">-SELECT-</option>
                 	<option th:each="ob:${specializations}" th:value="${ob.key}" th:text="${ob.value}"></option>
                 </select>
@@ -108,11 +123,11 @@
                 <span id="specializationError"></span>
               </div>
             </div>
-            
+             
             <!-- row #4 -->
             <div class="row">
               <div class="col-2">
-                <label for="address">Address</label>
+                <label for="address">Address</label> 
               </div>
               <div class="col-4">
                 <textarea
@@ -179,19 +194,6 @@
               </div>
             </div>
             
-            <!-- row #8 -->
-            <div class="row">
-              <div class="col-2">
-                <label for="imgLoc">imgLoc</label>
-              </div>
-              <div class="col-4">
-              	<input type="text" th:field="*{imgLoc}"  class="form-control"/>
-              </div>
-              <div class="col-6">
-                <span id="imgLocError"></span>
-              </div>
-            </div>
-            
             <button type="submit" class="btn btn-success">
               Update
              <i class="fa fa-pencil-square" aria-hidden="true"></i></i>
@@ -200,5 +202,6 @@
         </div>
       </div>
     </div>
+    <script  th:src="@{/JavaScript/uploadImgbb.js}"></script> 
   </body>
 </html>

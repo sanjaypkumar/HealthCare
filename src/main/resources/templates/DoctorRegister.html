@@ -1,4 +1,4 @@
-<html xmlns:th="https://www.thymeleaf.org/">
+ <html xmlns:th="https://www.thymeleaf.org/">
   <head>
     <link
       rel="stylesheet"
@@ -27,7 +27,7 @@
           <h3>Doctor Register</h3>
         </div>
         <div class="card-body">
-          <form th:action="@{/doctor/save}" method="POST" enctype="multipart/form-data">
+          <form th:action="@{/doctor/save}" method="POST" > <!-- enctype="multipart/form-data" -->
             <!-- row #1 -->
             <div class="row">
               <div class="col-2">
@@ -80,21 +80,21 @@
               </div>
             </div>
             
-            <!-- row #Dynamic -->
+             <!-- row #Integration -->
             <div class="row">
               <div class="col-2">
                 <label for="specialization">Specialization</label>
               </div>
               <div class="col-4">
                 <select name="specialization.id" id="specialization" class="form-control">
-                	<option value="">-SELECT-</option>
+                	<option value="">--SELECT--</option>
                 	<option th:each="ob:${specializations}" th:value="${ob.key}" th:text="${ob.value}"></option>
                 </select>
               </div>
               <div class="col-6">
                 <span id="specializationError"></span>
               </div>
-            </div>
+            </div> 
             
             <!-- row #4 -->
             <div class="row">
@@ -170,31 +170,21 @@
                 <span id="noteError"></span>
               </div>
             </div>
+            
             <!-- row #8 -->
             <div class="row">
-              <div class="col-2">
-                <label for="photos">Image</label>
+            <div class="col-2">
+                <label for="photoLoc">Image</label>
               </div>
               <div class="col-4">
-              	<input type="file" name="docImg" id="docImg" accept="image/png, image/jpeg" class="form-control"/>
+              		<!-- <input type="text" name="imgLoc" id="imgLoc" class="form-control"/> -->
+              	<input type="file" name="fileOb" id="fileOb"  class="form-control" onchange="uploadFile()"/>
+              	<input type="hidden" id="photoLoc" name="photoLoc" />
               </div>
               <div class="col-6">
-                <span id="photosError"></span>
+                <span id="photoLocError"></span>
               </div>
-            </div>
-            
-            <!-- row #9 -->
-            <div class="row">
-              <div class="col-2">
-                <label for="imgLoc">imgLoc</label>
-              </div>
-              <div class="col-4">
-              	<input type="text" name="imgLoc" id="imgLoc"  class="form-control"/>
-              </div>
-              <div class="col-6">
-                <span id="imgLocError"></span>
-              </div>
-            </div>
+            </div>     
             
             <button type="submit" class="btn btn-success">
               Add
@@ -210,5 +200,6 @@
         </div>
       </div>
     </div>
+    <script  th:src="@{/JavaScript/uploadImgbb.js}"></script> 
   </body>
 </html>

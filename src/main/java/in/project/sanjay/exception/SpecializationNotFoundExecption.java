@@ -1,4 +1,4 @@
-package in.project.sanjay.execption;
+package in.project.sanjay.exception;
 
 public class SpecializationNotFoundExecption extends RuntimeException {
 
