@@ -26,6 +26,24 @@ public interface MyCollectionsUtil {
 						ob->ob[1].toString())   //map value <-- Object[] - index 1
 				);
 	} 
+	
+	public static Map<Long,String> convertToMapIndex(List<Object[]> list){
+		//JAVA 8 Stream API
+		/*
+		Map<Long, String> map = 
+				list
+				.stream()
+				.collect(Collectors.toMap(
+						ob->Long.valueOf(
+								ob[0].toString()),
+						ob->ob[1].toString()));
+		*/
+		return list.stream().collect(
+				Collectors.toMap(
+						ob->Long.valueOf(ob[0].toString()),  //map key <-- Object[] - index 0
+						ob->ob[1].toString()+" "+ob[2].toString())   //map value <-- Object[] - index 1
+				);
+	} 
 
 }
 

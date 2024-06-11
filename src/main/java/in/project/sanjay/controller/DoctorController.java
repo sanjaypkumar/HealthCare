@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.util.StringUtils;
@@ -20,12 +21,16 @@ import in.project.sanjay.entity.Doctor;
 import in.project.sanjay.exception.DoctorNotFoundException;
 import in.project.sanjay.service.IDoctorService;
 import in.project.sanjay.service.ISpecializationService;
+import in.project.sanjay.util.MyMailUtil;
 //import in.project.sanjay.util.FileUploadUtil;
 
 @Controller
 @RequestMapping("/doctor")
 public class DoctorController {
 
+	@Autowired
+	private MyMailUtil mailUtil;
+	
 	@Autowired
 	private IDoctorService service;
 
@@ -65,7 +70,23 @@ public class DoctorController {
 	@PostMapping("/save")
 	public String saveForm(@ModelAttribute Doctor doctor, RedirectAttributes attributes) {
 		Long id = service.saveDoctor(doctor);
-		attributes.addAttribute("message", "Doctor (" + id + ")is created");
+		String message = "Doctor (" + id + ")is created";
+		attributes.addAttribute("message", message);
+		if(id!=null) {
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					mailUtil.send(
+							doctor.getEmail(), 
+							"SUCCESS",
+							message, 
+							new ClassPathResource("/myresources/sk.pdf")
+							);
+				}
+			}).start();
+		}
 		return "redirect:register";
 		/*
 		 * //String fileName =

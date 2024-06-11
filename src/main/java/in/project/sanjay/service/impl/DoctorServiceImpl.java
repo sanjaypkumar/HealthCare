@@ -1,6 +1,7 @@
 package in.project.sanjay.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import in.project.sanjay.entity.Doctor;
 import in.project.sanjay.exception.DoctorNotFoundException;
 import in.project.sanjay.repo.DoctorRepository;
 import in.project.sanjay.service.IDoctorService;
+import in.project.sanjay.util.MyCollectionsUtil;
 
 @Service
 public class DoctorServiceImpl implements IDoctorService {
@@ -51,6 +53,13 @@ public class DoctorServiceImpl implements IDoctorService {
 			throw new DoctorNotFoundException(doc.getId() + ", Not Exist");
 		}
 		
+	}
+
+	@Override
+	public Map<Long, String> getDoctorIdAndNames() {
+		// TODO Auto-generated method stub
+		List<Object[]> list =  repo.getDoctorIdAndNames();
+		return MyCollectionsUtil.convertToMapIndex(list);
 	}
 
 }

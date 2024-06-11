@@ -9,9 +9,9 @@ import in.project.sanjay.entity.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
-//	@Query("SELECT id, firstName, lastName FROM Doctor")
-//	public List<Object[]> getDoctorIdAndNames();
-//	
-//	@Query("SELECT doct FROM Doctor doct INNER JOIN doct.specialization as spc WHERE spc.id=:specId")
+	@Query("SELECT id, firstName, lastName FROM Doctor")
+ 	public List<Object[]> getDoctorIdAndNames();
+	
+	//@Query("SELECT doct FROM Doctor doct INNER JOIN doct.specialization as spc WHERE spc.id=:specId")
 //	public List<Doctor> findDoctorBySpecName(Long specId);
 }
